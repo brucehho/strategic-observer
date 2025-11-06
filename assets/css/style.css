@@ -29,34 +29,56 @@ body{
 }
 
 .hero{ 
-  padding:2rem 0 1.5rem;
+  padding:1.5rem 0 1rem;
   text-align: center;
   border-bottom: 1px solid rgba(0,0,0,.08);
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .hero-cover {
   width: 100%;
-  max-width: 600px;
+  max-width: 400px;
   height: auto;
-  border-radius: 12px;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  border-radius: 8px;
+  margin: 0 auto 1.5rem;
+  display: block;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .hero-cover {
+    max-width: 90%;
+    margin-bottom: 1rem;
+  }
 }
 
 .hero h1{ 
-  font-size:2.8rem; 
-  margin:0 0 1rem 0;
+  font-size:2.4rem; 
+  margin:0 0 0.8rem 0;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
 
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
+
 .tagline{ 
   opacity:.75;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  max-width: 700px;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
   margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .tagline {
+    font-size: 0.95rem;
+  }
 }
 
 .post-list {
