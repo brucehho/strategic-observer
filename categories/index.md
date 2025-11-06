@@ -9,4 +9,5 @@ permalink: /categories/
 - [战争·安全](/categories/world-wars/)
 - [能源·金融](/categories/energy-finance/)
 - [哲理](/categories/philosophy/)
+- [日本](/categories/japan/)
 
