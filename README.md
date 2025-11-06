@@ -9,11 +9,9 @@
 ```markdown
 ---
 layout: post
-title: "{精准但不耸动的标题}"
+title: "{文章标题}"
 date: 2025-11-06 21:00:00 +0900
-categories: [china-us]  # china-us | russia-ukraine | world-wars | energy-finance | philosophy
-tags: [中美, 战略, 国际关系]
-summary: "50~160 字摘要，点出事件、观点与结论。"
+categories: [china-us]  # china-us | japan | russia-ukraine | world-wars | energy-finance | philosophy
 cover: "/assets/images/cover.jpg"
 toc: true
 canonical_url: ""
