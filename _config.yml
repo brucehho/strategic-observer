@@ -1,0 +1,42 @@
+# 站点基础信息
+name: 冷静观察世界的人
+title: 冷静观察世界的人
+description: "透过战争与权力，看见文明底层逻辑。记录世界，记录自己。"
+
+url: https://brucehho.github.io
+baseurl: "/strategic-observer"   # 若绑定独立域名或用用户主页，可置为 ""
+
+# 主题与插件（使用 GitHub Pages 官方支持）
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# 匿名：不展示作者信息
+author: {}
+
+# 架构
+markdown: kramdown
+highlighter: rouge
+permalink: /:categories/:title/
+
+# 导航
+nav:
+  - title: 首页
+    url: /
+  - title: 分类
+    url: /categories/
+  - title: 关于
+    url: /about/
+
+# SEO
+seo:
+  type: Blog
+  name: 冷静观察世界的人
+
+# 忽略
+exclude:
+  - Gemfile
+  - Gemfile.lock
+
