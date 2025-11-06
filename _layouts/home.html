@@ -10,17 +10,6 @@ layout: default
     <p class="tagline">{{ site.description }}</p>
   </header>
 
-  <section class="categories-section">
-    <h2 class="section-title">分类</h2>
-    <nav class="categories">
-      <a href="{{ '/categories/china-us/' | relative_url }}">中美</a>
-      <a href="{{ '/categories/russia-ukraine/' | relative_url }}">俄乌</a>
-      <a href="{{ '/categories/world-wars/' | relative_url }}">战争·安全</a>
-      <a href="{{ '/categories/energy-finance/' | relative_url }}">能源·金融</a>
-      <a href="{{ '/categories/philosophy/' | relative_url }}">哲理</a>
-    </nav>
-  </section>
-
   <section class="posts-section">
     <h2 class="section-title">文章</h2>
     <ul class="post-list">
@@ -36,7 +25,6 @@ layout: default
             {% endfor %}
           {% endif %}
         </div>
-        {% if post.summary %}<p class="post-summary">{{ post.summary }}</p>{% endif %}
       </li>
       {% endfor %}
     </ul>
