@@ -32,7 +32,7 @@ body{
   padding:2rem 0 1.5rem;
   text-align: center;
   border-bottom: 1px solid rgba(0,0,0,.08);
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .hero h1{ 
@@ -183,24 +183,12 @@ body{
 }
 
 .posts-section {
-  margin: 2.5rem 0;
+  margin: 0;
 }
 
 @media (prefers-color-scheme: dark) {
   .hero {
     border-bottom-color: rgba(255, 255, 255, 0.1);
-  }
-  .categories-section {
-    border-bottom-color: rgba(255, 255, 255, 0.1);
-  }
-  .categories a {
-    color: #58a6ff;
-    border-color: rgba(88, 166, 255, 0.3);
-    background: rgba(88, 166, 255, 0.05);
-  }
-  .categories a:hover {
-    background-color: rgba(88, 166, 255, 0.15);
-    border-color: rgba(88, 166, 255, 0.5);
   }
   .post-item {
     border-bottom-color: rgba(255, 255, 255, 0.1);
