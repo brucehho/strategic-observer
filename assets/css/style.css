@@ -11,10 +11,14 @@ body{
   margin:0; 
 }
 
-.nav, .footer, .home, .post, .category{ 
+.nav, .footer, .home, .post, .category, .page{ 
   max-width:var(--max); 
   margin:auto; 
   padding:1rem; 
+}
+
+.page-content {
+  margin-top: 1.5rem;
 }
 
 .nav a{ 
@@ -75,5 +79,36 @@ body{
 
 .footer{ 
   opacity:.7 
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.categories a {
+  color: #0366d6;
+  text-decoration: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.categories a:hover {
+  background-color: rgba(3, 102, 214, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .categories a {
+    color: #58a6ff;
+  }
+  .categories a:hover {
+    background-color: rgba(88, 166, 255, 0.1);
+  }
+  .post-item {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
