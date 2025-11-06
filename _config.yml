@@ -1,6 +1,6 @@
 # 站点基础信息
-name: 冷静观察世界的人
-title: 冷静观察世界的人
+name: 地缘政治与思想观察
+title: 地缘政治与思想观察
 description: |
   透过战争与权力，洞察文明的深层结构。
 
@@ -36,7 +36,7 @@ nav:
 # SEO
 seo:
   type: Blog
-  name: 冷静观察世界的人
+  name: 地缘政治与思想观察
 
 # 忽略
 exclude:
