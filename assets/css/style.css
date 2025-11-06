@@ -244,5 +244,11 @@ body{
   .post-category {
     color: #58a6ff;
   }
+  .category-post-item {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+  }
+  .category-post-item a:hover {
+    color: #58a6ff;
+  }
 }
 
