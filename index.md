@@ -1,5 +1,5 @@
 ---
 layout: home
-title: 冷静观察世界的人
+title: 地缘政治与思想观察
 ---
 
