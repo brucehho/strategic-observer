@@ -8,3 +8,4 @@ permalink: /about/
 
 **方法论**：事实 → 判断 → 情景 → 行动。
 
+**GitHub**: [@brucehho](https://github.com/brucehho)
