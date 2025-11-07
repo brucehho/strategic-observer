@@ -2,6 +2,8 @@
 layout: post
 title: "宣言：为什么我要冷静观察世界"
 date: 2025-11-06
+lang: zh
+slug: why-i-observe-the-world-calmly
 categories: [philosophy]
 tags: [开篇, 方法论]
 summary: "写作的边界与方法：事实—判断—情景—行动。"

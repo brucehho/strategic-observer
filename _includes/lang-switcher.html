@@ -1,0 +1,55 @@
+{% if page.slug %}
+  {% assign current_lang = page.lang | default: 'zh' %}
+  {% assign zh_post = null %}
+  {% assign en_post = null %}
+  {% assign ja_post = null %}
+  
+  {% for post in site.posts %}
+    {% if post.slug == page.slug %}
+      {% if post.lang == 'zh' or post.lang == nil %}
+        {% assign zh_post = post %}
+      {% elsif post.lang == 'en' %}
+        {% assign en_post = post %}
+      {% elsif post.lang == 'ja' %}
+        {% assign ja_post = post %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  
+  <div class="lang-switcher">
+    {% if zh_post %}
+      {% if current_lang == 'zh' or current_lang == nil %}
+        <span class="lang-current">中文</span>
+      {% else %}
+        <a href="{{ zh_post.url | relative_url }}">中文</a>
+      {% endif %}
+    {% else %}
+      <span class="lang-unavailable">中文</span>
+    {% endif %}
+    
+    <span class="lang-separator">|</span>
+    
+    {% if en_post %}
+      {% if current_lang == 'en' %}
+        <span class="lang-current">English</span>
+      {% else %}
+        <a href="{{ en_post.url | relative_url }}">English</a>
+      {% endif %}
+    {% else %}
+      <span class="lang-unavailable">English</span>
+    {% endif %}
+    
+    <span class="lang-separator">|</span>
+    
+    {% if ja_post %}
+      {% if current_lang == 'ja' %}
+        <span class="lang-current">日本語</span>
+      {% else %}
+        <a href="{{ ja_post.url | relative_url }}">日本語</a>
+      {% endif %}
+    {% else %}
+      <span class="lang-unavailable">日本語</span>
+    {% endif %}
+  </div>
+{% endif %}
+

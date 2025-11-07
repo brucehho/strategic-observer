@@ -15,12 +15,15 @@ layout: default
     <h2 class="section-title">文章</h2>
     <ul class="post-list">
       {% for post in site.posts %}
-      <li class="post-item">
-        <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <div class="post-meta">
-          <time>{{ post.date | date: '%Y-%m-%d' }}</time>
-        </div>
-      </li>
+        {% assign post_lang = post.lang | default: 'zh' %}
+        {% if post_lang == 'zh' %}
+        <li class="post-item">
+          <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <div class="post-meta">
+            <time>{{ post.date | date: '%Y-%m-%d' }}</time>
+          </div>
+        </li>
+        {% endif %}
       {% endfor %}
     </ul>
   </section>

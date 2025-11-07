@@ -2,6 +2,8 @@
 layout: post
 title: "2025年印巴之战，背后的支持者都有谁？"
 date: 2025-11-07
+lang: zh
+slug: india-pakistan-conflict-2025-supporters
 categories: [world-wars]
 tags: [印度, 巴基斯坦, 中美, 战略, 国际关系]
 summary: "分析2025年印巴之战，背后的支持者都有谁？"
