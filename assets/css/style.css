@@ -171,8 +171,19 @@ body{
   border-radius:10px 
 }
 
-.footer{ 
-  opacity:.7 
+.footer {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0,0,0,.08);
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.6;
+}
+
+@media (prefers-color-scheme: dark) {
+  .footer {
+    border-top-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .section-title {
