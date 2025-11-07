@@ -16,7 +16,8 @@ layout: default
     <ul class="post-list">
       {% for post in site.posts %}
         {% assign post_lang = post.lang | default: 'zh' %}
-        {% if post_lang == 'zh' %}
+        {% assign show_on_homepage = post.homepage | default: true %}
+        {% if post_lang == 'zh' and show_on_homepage %}
         <li class="post-item">
           <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
           <div class="post-meta">
