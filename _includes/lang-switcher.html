@@ -1,4 +1,4 @@
-{% if page.slug %}
+{% if page.slug and page.hide_lang_switcher != true %}
   {% assign current_lang = page.lang | default: 'zh' %}
   {% assign zh_post = null %}
   {% assign en_post = null %}

@@ -6,6 +6,7 @@ lang: zh
 slug: why-i-observe-the-world-calmly
 permalink: /about/why-i-observe-the-world-calmly/
 homepage: false
+hide_lang_switcher: true
 toc: true
 ---
 
@@ -18,5 +19,6 @@ toc: true
 - 人生哲理与行动方法
 
 这是一个长期项目。所有文章将按上述结构迭代更新。
+
 https://brucehho.github.io/strategic-observer/
 
