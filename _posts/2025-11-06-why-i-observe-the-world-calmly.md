@@ -3,6 +3,8 @@ layout: post
 title: "为什么我要冷静观察世界"
 date: 2025-11-06
 lang: zh
+slug: why-i-observe-the-world-calmly
+permalink: /about/why-i-observe-the-world-calmly/
 homepage: false
 toc: true
 ---
