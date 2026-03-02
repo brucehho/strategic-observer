@@ -53,7 +53,7 @@ a:hover { text-decoration: underline; }
   height: var(--nav-h);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0 2rem;
   background: rgba(7, 9, 15, 0.88);
   backdrop-filter: blur(14px);
