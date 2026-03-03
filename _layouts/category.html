@@ -9,14 +9,17 @@ layout: default
   <ul class="category-post-list">
     {% assign cats = page.category | split: ',' %}
     {% for post in site.posts %}
-      {% for c in cats %}
-        {% if post.categories contains c %}
-          <li class="category-post-item">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            <time>{{ post.date | date: '%Y-%m-%d' }}</time>
-          </li>
-        {% endif %}
-      {% endfor %}
+      {% assign post_lang = post.lang | default: 'zh' %}
+      {% if post_lang == 'zh' %}
+        {% for c in cats %}
+          {% if post.categories contains c %}
+            <li class="category-post-item">
+              <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              <time>{{ post.date | date: '%Y-%m-%d' }}</time>
+            </li>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
     {% endfor %}
   </ul>
 </main>
