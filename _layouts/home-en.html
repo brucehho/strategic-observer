@@ -1,0 +1,79 @@
+---
+layout: default
+---
+
+{% include header.html %}
+
+<main class="home">
+  {% assign en_posts = site.posts | where: "lang", "en" %}
+  {% assign visible_posts = "" | split: "" %}
+  {% for post in en_posts %}
+    {% unless post.homepage == false %}
+      {% assign visible_posts = visible_posts | push: post %}
+    {% endunless %}
+  {% endfor %}
+
+  {% assign top_story = visible_posts[0] %}
+  {% assign secondary_stories = visible_posts | slice: 1, 4 %}
+  {% assign latest_updates = visible_posts | slice: 0, 8 %}
+  {% assign feature_stories = visible_posts | slice: 5, 4 %}
+
+  <section class="top-stories">
+    <h2 class="section-title">Top Stories</h2>
+    {% if top_story %}
+      <article class="top-story-main">
+        <div class="post-meta">
+          <span class="live-badge"><span class="live-dot"></span><span class="live-text">Live Updates</span></span>
+          <time>{{ top_story.date | date: '%Y-%m-%d' }}</time>
+        </div>
+        <a class="post-title" href="{{ top_story.url | relative_url }}">{{ top_story.title }}</a>
+        {% if top_story.summary %}<p class="post-summary">{{ top_story.summary }}</p>{% endif %}
+      </article>
+    {% endif %}
+
+    <div class="top-story-grid">
+      {% for post in secondary_stories %}
+        <article class="top-story-card">
+          <div class="post-meta">
+            <time>{{ post.date | date: '%Y-%m-%d' }}</time>
+          </div>
+          <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          {% if post.summary %}<p class="post-summary">{{ post.summary }}</p>{% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="world-columns">
+    <div class="latest-updates">
+      <h2 class="section-title">Latest Updates</h2>
+      <ul class="latest-list">
+        {% for post in latest_updates %}
+          <li class="latest-item">
+            <div class="post-meta">
+              <time>{{ post.date | date: '%Y-%m-%d' }}</time>
+            </div>
+            <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="features">
+      <h2 class="section-title">Features</h2>
+      <div class="features-list">
+        {% for post in feature_stories %}
+          <article class="feature-item">
+            <div class="post-meta">
+              <time>{{ post.date | date: '%Y-%m-%d' }}</time>
+            </div>
+            <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% if post.summary %}<p class="post-summary">{{ post.summary }}</p>{% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</main>
+
+{% include footer.html %}

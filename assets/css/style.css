@@ -74,9 +74,38 @@ body::before {
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 1rem 2rem;
   min-height: 72px;
+}
+
+/* ----------- CN/EN homepage language toggle ----------- */
+.lang-toggle {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+.lang-btn {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+  border: 1px solid var(--border-2);
+  color: var(--text-2);
+  text-decoration: none;
+  line-height: 1.4;
+}
+.lang-btn.active {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+.lang-btn:hover:not(.active) {
+  border-color: var(--red);
+  color: var(--red);
+  text-decoration: none;
 }
 
 .site-logo {

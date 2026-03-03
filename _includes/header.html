@@ -8,6 +8,10 @@
         <span class="logo-tagline">Strategic Observer</span>
       </span>
     </a>
+    <div class="lang-toggle">
+      <a href="{{ '/' | relative_url }}" class="lang-btn{% if page.layout == 'home' %} active{% endif %}">CN</a>
+      <a href="{{ '/en/' | relative_url }}" class="lang-btn{% if page.layout == 'home-en' %} active{% endif %}">EN</a>
+    </div>
   </div>
 
   <!-- Layer 2: Single combined nav -->
