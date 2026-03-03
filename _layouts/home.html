@@ -19,11 +19,11 @@ layout: default
   {% assign feature_stories = visible_posts | slice: 5, 4 %}
 
   <section class="top-stories">
-    <h2 class="section-title">Top Stories</h2>
+    <h2 class="section-title">头条新闻</h2>
     {% if top_story %}
       <article class="top-story-main">
         <div class="post-meta">
-          <span class="live-badge"><span class="live-dot"></span><span class="live-text">Live Updates</span></span>
+          <span class="live-badge"><span class="live-dot"></span><span class="live-text">实时更新</span></span>
           <time>{{ top_story.date | date: '%Y-%m-%d' }}</time>
         </div>
         <a class="post-title" href="{{ top_story.url | relative_url }}">{{ top_story.title }}</a>
@@ -46,7 +46,7 @@ layout: default
 
   <section class="world-columns">
     <div class="latest-updates">
-      <h2 class="section-title">Latest Updates</h2>
+      <h2 class="section-title">最新更新</h2>
       <ul class="latest-list">
         {% for post in latest_updates %}
           <li class="latest-item">
@@ -60,7 +60,7 @@ layout: default
     </div>
 
     <div class="features">
-      <h2 class="section-title">Features</h2>
+      <h2 class="section-title">深度专题</h2>
       <div class="features-list">
         {% for post in feature_stories %}
           <article class="feature-item">
