@@ -68,7 +68,7 @@ body::before {
   z-index: 100;
 }
 
-/* ----------- Layer 1: Logo bar (white) ----------- */
+/* ----------- Layer 1: Logo bar (white) — logo-style wordmark ----------- */
 .site-logo-bar {
   background: #fff;
   border-bottom: 1px solid var(--border);
@@ -80,15 +80,41 @@ body::before {
 }
 
 .site-logo {
-  font-family: var(--serif);
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: #1a1a1a !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   text-decoration: none !important;
-  letter-spacing: -0.02em;
-  line-height: 1;
+  color: inherit;
+  transition: opacity 0.2s;
 }
-.site-logo:hover { color: var(--red) !important; }
+.site-logo:hover { opacity: 0.88; }
+
+.logo-mark {
+  width: 12px;
+  height: 28px;
+  background: var(--red);
+  flex-shrink: 0;
+  border-radius: 1px;
+}
+
+.logo-text {
+  font-family: var(--serif);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.logo-tagline {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-left: 0.25rem;
+}
 
 /* ----------- Layer 2: Single combined nav (black) ----------- */
 .nav-main {
@@ -619,12 +645,12 @@ body::before {
 
 /* ----------- Responsive ----------- */
 @media (max-width: 768px) {
-  .site-logo-bar { padding: 0.7rem 1rem; min-height: 54px; }
-  .site-logo { font-size: 1.2rem; }
-  .live-badge { left: 1rem; font-size: 0.65rem; }
-  .logo-bar-right { display: none; }
   .site-logo-bar { padding: 0.75rem 1rem; min-height: 56px; }
-  .site-logo { font-size: 1.25rem; }
+  .site-logo { gap: 0.45rem; }
+  .logo-mark { width: 10px; height: 22px; }
+  .logo-text { font-size: 1.25rem; }
+  .logo-tagline { font-size: 0.6rem; letter-spacing: 0.08em; }
+  .live-badge { left: 1rem; font-size: 0.65rem; }
   .nav-main { justify-content: flex-start; }
   .nav-main a { padding: 0 1rem; font-size: 0.78rem; }
   .home, .post, .page, .category { padding: 0 1rem 3rem; }
