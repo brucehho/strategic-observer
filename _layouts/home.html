@@ -12,23 +12,74 @@ layout: default
 
   <section class="posts-section">
     <h2 class="section-title">最新文章</h2>
-    <ul class="post-list">
-      {% for post in site.posts %}
-        {% assign post_lang = post.lang | default: 'zh' %}
-        {% assign show_on_homepage = post.homepage | default: true %}
-        {% if post_lang == 'zh' and show_on_homepage %}
-        <li class="post-item">
+
+    {% assign zh_posts = site.posts | where: "lang", "zh" %}
+    {% assign visible_posts = "" | split: "" %}
+    {% for post in zh_posts %}
+      {% assign show = post.homepage | default: true %}
+      {% if show %}
+        {% assign visible_posts = visible_posts | push: post %}
+      {% endif %}
+    {% endfor %}
+
+    {% for post in visible_posts %}
+      {% assign cat = post.categories[0] | default: "" %}
+      {% assign cat_class = "cat-" | append: cat %}
+
+      {% if forloop.first %}
+        <!-- Featured: first article, full-width -->
+        <article class="post-featured">
           <div class="post-meta">
+            {% if cat != "" %}
+              <a class="post-category {{ cat_class }}" href="{{ '/categories/' | append: cat | relative_url }}">{{ cat }}</a>
+            {% endif %}
             <time>{{ post.date | date: '%Y-%m-%d' }}</time>
           </div>
           <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
           {% if post.summary %}
-          <p class="post-summary">{{ post.summary }}</p>
+            <p class="post-summary">{{ post.summary }}</p>
           {% endif %}
-        </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
+        </article>
+
+        <!-- Open grid for remaining articles -->
+        <div class="post-grid">
+
+      {% elsif forloop.last %}
+        <!-- Last card -->
+        <article class="post-card">
+          <div class="post-meta">
+            {% if cat != "" %}
+              <a class="post-category {{ cat_class }}" href="{{ '/categories/' | append: cat | relative_url }}">{{ cat }}</a>
+            {% endif %}
+            <time>{{ post.date | date: '%Y-%m-%d' }}</time>
+          </div>
+          <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          {% if post.summary %}
+            <p class="post-summary">{{ post.summary }}</p>
+          {% endif %}
+        </article>
+
+        <!-- Close grid -->
+        </div>
+
+      {% else %}
+        <!-- Grid card -->
+        <article class="post-card">
+          <div class="post-meta">
+            {% if cat != "" %}
+              <a class="post-category {{ cat_class }}" href="{{ '/categories/' | append: cat | relative_url }}">{{ cat }}</a>
+            {% endif %}
+            <time>{{ post.date | date: '%Y-%m-%d' }}</time>
+          </div>
+          <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          {% if post.summary %}
+            <p class="post-summary">{{ post.summary }}</p>
+          {% endif %}
+        </article>
+
+      {% endif %}
+    {% endfor %}
+
   </section>
 </main>
 
