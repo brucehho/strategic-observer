@@ -4,10 +4,6 @@ layout: default
 
 {% include header.html %}
 
-{% comment %}
-  Map Chinese tag names to their English equivalents used in EN post front matter.
-  EN posts use English tags; ZH tag pages use Chinese names.
-{% endcomment %}
 {% assign en_tag = '' %}
 {% if page.tag == '中东' %}{% assign en_tag = 'Middle East' %}
 {% elsif page.tag == '中美' %}{% assign en_tag = 'China-US' %}
@@ -18,10 +14,11 @@ layout: default
 {% elsif page.tag == '国际关系' %}{% assign en_tag = 'International Relations' %}
 {% elsif page.tag == '战略' %}{% assign en_tag = 'Strategy' %}
 {% endif %}
+{% if en_tag != '' %}{% assign en_title = en_tag %}{% else %}{% assign en_title = page.title %}{% endif %}
 
-<main class="category">
-  <div class="tag-lang-bar">
-    <h1>{{ page.title }}</h1>
+<main class="tag-page">
+  <div class="tag-lang-bar" data-en-title="{{ en_title }}" data-zh-title="{{ page.title }}">
+    <h1 id="tag-page-title" class="tag-page-title">{{ page.title }}</h1>
     <div class="tag-lang-toggle">
       <button class="tag-lang-btn" data-lang="zh" onclick="switchTagLang('zh')">中文</button>
       <span class="lang-sep">·</span>
@@ -29,31 +26,59 @@ layout: default
     </div>
   </div>
 
-  <ul class="category-post-list" id="tag-posts-zh">
-    {% for post in site.posts %}
-      {% assign post_lang = post.lang | default: 'zh' %}
-      {% if post_lang == 'zh' and post.tags contains page.tag %}
-        <li class="category-post-item">
-          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          <time>{{ post.date | date: '%Y-%m-%d' }}</time>
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-
-  <ul class="category-post-list" id="tag-posts-en">
-    {% for post in site.posts %}
-      {% assign post_lang = post.lang | default: 'zh' %}
-      {% if post_lang == 'en' %}
-        {% if post.tags contains page.tag or post.tags contains en_tag %}
-          <li class="category-post-item">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            <time>{{ post.date | date: '%Y-%m-%d' }}</time>
-          </li>
+  <div id="tag-posts-zh" class="tag-posts">
+    <section class="tag-top-stories">
+      {% assign count = 0 %}
+      {% for post in site.posts %}
+        {% assign post_lang = post.lang | default: 'zh' %}
+        {% if post_lang == 'zh' and post.tags contains page.tag %}
+          {% assign count = count | plus: 1 %}
+          {% if count == 1 %}
+            <article class="top-story-main">
+              <div class="post-meta"><time>{{ post.date | date: '%Y-%m-%d' }}</time></div>
+              <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              {% if post.summary %}<p class="post-summary">{{ post.summary }}</p>{% endif %}
+            </article>
+            <div class="top-story-grid">
+          {% else %}
+            <article class="top-story-card">
+              <div class="post-meta"><time>{{ post.date | date: '%Y-%m-%d' }}</time></div>
+              <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              {% if post.summary %}<p class="post-summary">{{ post.summary }}</p>{% endif %}
+            </article>
+          {% endif %}
         {% endif %}
-      {% endif %}
-    {% endfor %}
-  </ul>
+      {% endfor %}
+      {% if count > 1 %}</div>{% endif %}
+    </section>
+  </div>
+
+  <div id="tag-posts-en" class="tag-posts">
+    <section class="tag-top-stories">
+      {% assign count = 0 %}
+      {% for post in site.posts %}
+        {% assign post_lang = post.lang | default: 'zh' %}
+        {% if post_lang == 'en' and (post.tags contains page.tag or post.tags contains en_tag) %}
+          {% assign count = count | plus: 1 %}
+          {% if count == 1 %}
+            <article class="top-story-main">
+              <div class="post-meta"><time>{{ post.date | date: '%Y-%m-%d' }}</time></div>
+              <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              {% if post.summary %}<p class="post-summary">{{ post.summary }}</p>{% endif %}
+            </article>
+            <div class="top-story-grid">
+          {% else %}
+            <article class="top-story-card">
+              <div class="post-meta"><time>{{ post.date | date: '%Y-%m-%d' }}</time></div>
+              <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+              {% if post.summary %}<p class="post-summary">{{ post.summary }}</p>{% endif %}
+            </article>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      {% if count > 1 %}</div>{% endif %}
+    </section>
+  </div>
 </main>
 
 {% include footer.html %}
@@ -62,14 +87,56 @@ layout: default
 function switchTagLang(lang) {
   document.getElementById('tag-posts-zh').style.display = (lang === 'zh') ? 'block' : 'none';
   document.getElementById('tag-posts-en').style.display = (lang === 'en') ? 'block' : 'none';
-  document.querySelectorAll('.tag-lang-btn').forEach(function(btn) {
+  document.querySelectorAll('.tag-lang-bar .tag-lang-btn').forEach(function(btn) {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
   localStorage.setItem('siteLang', lang);
+  if (lang === 'en') applyEnUi(); else applyZhUi();
 }
-
 (function() {
-  var lang = localStorage.getItem('siteLang') || 'zh';
+  var params = new URLSearchParams(location.search);
+  var lang = params.get('lang') || localStorage.getItem('siteLang') || 'zh';
+  if (params.get('lang')) {
+    localStorage.setItem('siteLang', lang);
+    history.replaceState(null, '', location.pathname);
+  }
   switchTagLang(lang);
+  if (lang === 'en') applyEnUi();
 })();
+var zhLabels = ['首页','中东','金融','经济','中美','日本','关于'];
+var enLabels = ['Home','Middle East','Finance','Economy','China-US','Japan','About'];
+function applyEnUi() {
+  var bar = document.querySelector('.tag-lang-bar');
+  if (bar && bar.dataset.enTitle) {
+    var h = document.getElementById('tag-page-title');
+    if (h) h.textContent = bar.dataset.enTitle;
+  }
+  var nav = document.querySelector('.nav-main');
+  if (nav) {
+    var links = nav.querySelectorAll('a');
+    for (var i = 0; i < links.length && i < enLabels.length; i++) links[i].textContent = enLabels[i];
+  }
+  var toggles = document.querySelectorAll('.lang-toggle .lang-btn');
+  if (toggles[0]) toggles[0].classList.remove('active');
+  if (toggles[1]) toggles[1].classList.add('active');
+  var logo = document.querySelector('.site-logo');
+  if (logo) logo.href = "{{ '/en/' | relative_url }}";
+}
+function applyZhUi() {
+  var bar = document.querySelector('.tag-lang-bar');
+  if (bar && bar.dataset.zhTitle) {
+    var h = document.getElementById('tag-page-title');
+    if (h) h.textContent = bar.dataset.zhTitle;
+  }
+  var nav = document.querySelector('.nav-main');
+  if (nav) {
+    var links = nav.querySelectorAll('a');
+    for (var i = 0; i < links.length && i < zhLabels.length; i++) links[i].textContent = zhLabels[i];
+  }
+  var toggles = document.querySelectorAll('.lang-toggle .lang-btn');
+  if (toggles[0]) toggles[0].classList.add('active');
+  if (toggles[1]) toggles[1].classList.remove('active');
+  var logo = document.querySelector('.site-logo');
+  if (logo) logo.href = "{{ '/' | relative_url }}";
+}
 </script>

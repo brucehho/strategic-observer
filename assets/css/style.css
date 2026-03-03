@@ -657,7 +657,26 @@ body::before {
 }
 .lang-separator { color: var(--border-2); }
 
-/* ----------- Category archive page ----------- */
+/* ----------- Tag archive page (BBC-style) ----------- */
+.tag-page {
+  padding: 2rem 2rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.tag-page-title {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
+}
+#tag-posts-en { display: none; }
+.tag-top-stories {
+  margin-top: 1.5rem;
+}
+.tag-top-stories .top-story-main {
+  margin-bottom: 1rem;
+}
 .tag-lang-bar {
   display: flex;
   align-items: center;
@@ -690,6 +709,7 @@ body::before {
   color: var(--red);
 }
 
+/* ----------- Category archive page (legacy list) ----------- */
 .category-post-list { list-style: none; padding: 0; margin: 1.5rem 0; }
 .category-post-item {
   display: flex;
@@ -755,7 +775,7 @@ body::before {
   .live-badge { left: 1rem; font-size: 0.65rem; }
   .nav-main { justify-content: flex-start; }
   .nav-main a { padding: 0 1rem; font-size: 0.78rem; }
-  .home, .post, .page, .category { padding: 0 1rem 3rem; }
+  .home, .post, .page, .category, .tag-page { padding: 0 1rem 3rem; }
   .post-header h1 { font-size: 1.65rem; }
   .post-content { font-size: 1rem; }
   .top-story-main .post-title { font-size: 1.5rem; }
