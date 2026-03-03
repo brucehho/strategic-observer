@@ -1,26 +1,25 @@
-<!-- Layer 1: Logo bar -->
-<div class="site-logo-bar">
-  <div class="live-badge">
-    <span class="live-dot"></span>LIVE
-  </div>
-  <a class="site-logo" href="{{ '/' | relative_url }}">地缘政治与思想观察</a>
-  <span class="logo-bar-right">战略 · 观察 · 分析</span>
-</div>
-
-<!-- Layer 2 + 3: Nav -->
-<nav class="nav">
-  <div class="nav-main">
-    <div class="nav-links">
-      <a href="{{ '/' | relative_url }}">首页</a>
-      <a href="{{ '/tags/' | relative_url }}">标签</a>
-      <a href="{{ '/about/' | relative_url }}">关于</a>
+<header class="site-header">
+  <!-- Layer 1: Logo bar -->
+  <div class="site-logo-bar">
+    <div class="live-badge">
+      <span class="live-dot"></span><span class="live-text">LIVE</span>
     </div>
+    <a class="site-logo" href="{{ '/' | relative_url }}">地缘政治与思想观察</a>
   </div>
-  <div class="nav-tag-scroll">
-    <a class="nav-tag-link" href="{{ '/tags/中东/' | relative_url }}">中东</a>
-    <a class="nav-tag-link" href="{{ '/tags/金融/' | relative_url }}">金融</a>
-    <a class="nav-tag-link" href="{{ '/tags/经济/' | relative_url }}">经济</a>
-    <a class="nav-tag-link" href="{{ '/tags/中美/' | relative_url }}">中美</a>
-    <a class="nav-tag-link" href="{{ '/tags/日本/' | relative_url }}">日本</a>
+
+  <!-- Layer 2: Main nav (black) -->
+  <nav class="nav-main">
+    <a href="{{ '/' | relative_url }}">首页</a>
+    <a href="{{ '/tags/' | relative_url }}">标签</a>
+    <a href="{{ '/about/' | relative_url }}">关于</a>
+  </nav>
+
+  <!-- Layer 3: Tag strip (dark grey) -->
+  <div class="nav-tag-strip">
+    <a href="{{ '/tags/中东/' | relative_url }}">中东</a>
+    <a href="{{ '/tags/金融/' | relative_url }}">金融</a>
+    <a href="{{ '/tags/经济/' | relative_url }}">经济</a>
+    <a href="{{ '/tags/中美/' | relative_url }}">中美</a>
+    <a href="{{ '/tags/日本/' | relative_url }}">日本</a>
   </div>
-</nav>
+</header>
