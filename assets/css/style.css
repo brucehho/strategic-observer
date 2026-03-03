@@ -682,13 +682,13 @@ html.lang-en .nav-main .nav-en { display: flex; }
 }
 .tag-top-stories .top-story-main {
   margin-bottom: 1rem;
+  border-top: none;
+  border-bottom: none;
 }
 .tag-lang-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 3px solid var(--red);
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.75rem;
   margin-bottom: 0;
 }
 .tag-lang-toggle {

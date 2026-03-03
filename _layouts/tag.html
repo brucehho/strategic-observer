@@ -25,11 +25,6 @@ layout: default
 <main class="tag-page">
   <div class="tag-lang-bar" data-en-title="{{ en_title }}" data-zh-title="{{ page.title }}">
     <h1 id="tag-page-title" class="tag-page-title">{{ page.title }}</h1>
-    <div class="tag-lang-toggle">
-      <button class="tag-lang-btn" data-lang="zh" onclick="switchTagLang('zh')">中文</button>
-      <span class="lang-sep">·</span>
-      <button class="tag-lang-btn" data-lang="en" onclick="switchTagLang('en')">EN</button>
-    </div>
   </div>
 
   <div id="tag-posts-zh" class="tag-posts">
@@ -94,9 +89,6 @@ function switchTagLang(lang) {
   var zh = document.getElementById('tag-posts-zh'), en = document.getElementById('tag-posts-en');
   if (zh) zh.style.display = (lang === 'zh') ? 'block' : 'none';
   if (en) en.style.display = (lang === 'en') ? 'block' : 'none';
-  document.querySelectorAll('.tag-lang-bar .tag-lang-btn').forEach(function(btn) {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-  });
   localStorage.setItem('siteLang', lang);
   document.documentElement.classList.toggle('lang-en', lang === 'en');
   if (lang === 'en') applyEnUi(); else applyZhUi();
