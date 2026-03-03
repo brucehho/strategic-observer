@@ -16,69 +16,44 @@ layout: default
     {% assign zh_posts = site.posts | where: "lang", "zh" %}
     {% assign visible_posts = "" | split: "" %}
     {% for post in zh_posts %}
-      {% assign show = post.homepage | default: true %}
-      {% if show %}
+      {% unless post.homepage == false %}
         {% assign visible_posts = visible_posts | push: post %}
-      {% endif %}
+      {% endunless %}
     {% endfor %}
 
-    {% for post in visible_posts %}
-      {% assign cat = post.categories[0] | default: "" %}
-      {% assign cat_class = "cat-" | append: cat %}
-
-      {% if forloop.first %}
-        <!-- Featured: first article, full-width -->
-        <article class="post-featured">
-          <div class="post-meta">
-            {% if cat != "" %}
-              <a class="post-category {{ cat_class }}" href="{{ '/categories/' | append: cat | relative_url }}">{{ cat }}</a>
-            {% endif %}
-            <time>{{ post.date | date: '%Y-%m-%d' }}</time>
-          </div>
-          <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          {% if post.summary %}
-            <p class="post-summary">{{ post.summary }}</p>
+    {% assign featured = visible_posts[0] %}
+    {% if featured %}
+      {% assign featured_cat = featured.categories[0] | default: "" %}
+      <article class="post-featured">
+        <div class="post-meta">
+          {% if featured_cat != "" %}
+            <a class="post-category cat-{{ featured_cat }}" href="{{ '/categories/' | append: featured_cat | relative_url }}">{{ featured_cat }}</a>
           {% endif %}
-        </article>
-
-        <!-- Open grid for remaining articles -->
-        <div class="post-grid">
-
-      {% elsif forloop.last %}
-        <!-- Last card -->
-        <article class="post-card">
-          <div class="post-meta">
-            {% if cat != "" %}
-              <a class="post-category {{ cat_class }}" href="{{ '/categories/' | append: cat | relative_url }}">{{ cat }}</a>
-            {% endif %}
-            <time>{{ post.date | date: '%Y-%m-%d' }}</time>
-          </div>
-          <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          {% if post.summary %}
-            <p class="post-summary">{{ post.summary }}</p>
-          {% endif %}
-        </article>
-
-        <!-- Close grid -->
+          <time>{{ featured.date | date: '%Y-%m-%d' }}</time>
         </div>
+        <a class="post-title" href="{{ featured.url | relative_url }}">{{ featured.title }}</a>
+        {% if featured.summary %}<p class="post-summary">{{ featured.summary }}</p>{% endif %}
+      </article>
+    {% endif %}
 
-      {% else %}
-        <!-- Grid card -->
-        <article class="post-card">
-          <div class="post-meta">
-            {% if cat != "" %}
-              <a class="post-category {{ cat_class }}" href="{{ '/categories/' | append: cat | relative_url }}">{{ cat }}</a>
-            {% endif %}
-            <time>{{ post.date | date: '%Y-%m-%d' }}</time>
-          </div>
-          <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-          {% if post.summary %}
-            <p class="post-summary">{{ post.summary }}</p>
-          {% endif %}
-        </article>
-
-      {% endif %}
-    {% endfor %}
+    {% assign grid_posts = visible_posts | slice: 1, 100 %}
+    {% if grid_posts.size > 0 %}
+      <div class="post-grid">
+        {% for post in grid_posts %}
+          {% assign cat = post.categories[0] | default: "" %}
+          <article class="post-card">
+            <div class="post-meta">
+              {% if cat != "" %}
+                <a class="post-category cat-{{ cat }}" href="{{ '/categories/' | append: cat | relative_url }}">{{ cat }}</a>
+              {% endif %}
+              <time>{{ post.date | date: '%Y-%m-%d' }}</time>
+            </div>
+            <a class="post-title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            {% if post.summary %}<p class="post-summary">{{ post.summary }}</p>{% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
 
   </section>
 </main>
