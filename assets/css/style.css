@@ -756,6 +756,36 @@ html.lang-en .nav-main .nav-en { display: flex; }
   border-bottom: 1px solid var(--border);
 }
 
+/* ----------- About page (author bio) ----------- */
+.about-bio {
+  max-width: 480px;
+  margin-top: 2rem;
+}
+.about-lang {
+  font-size: 0.82rem;
+  color: var(--text-3);
+  margin-bottom: 2rem;
+}
+.about-name {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.5rem;
+  letter-spacing: -0.02em;
+}
+.about-role {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--text-2);
+  margin: 0 0 1.5rem;
+  letter-spacing: 0.02em;
+}
+.about-link a {
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
 /* ----------- Footer ----------- */
 .footer {
   background: var(--navy);
